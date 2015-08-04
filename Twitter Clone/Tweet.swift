@@ -6,8 +6,20 @@
 //  Copyright (c) 2015 Mick Soum. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
-class Tweet: NSObject {
-   
+struct Tweet {
+  let text : String
+  let username : String
+  let id : String
+  let profileImageURL : String
 }
+
+
+//initialize it here
+
+//let tweet = Tweet(text: "Hey", author: "Mick")
+
+
+
