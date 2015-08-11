@@ -10,58 +10,97 @@ import UIKit
 import Foundation
 
 class TweetJSONParser {
+
+//create instance of tweet struct and populate with data?
+//where is the JSON file coming from?
+
+//JSON file will be used to populate the tableview
+
+//define function
+//make the tweet return ? optional
+//make this a type method
+class func tweetsFromJSONData(jsonData:NSData) -> [Tweet]? {
   
-  //create instance of tweet struct and populate with data?
-  //where is the JSON file coming from?
+  var error : NSError?  //see what error pops up when you don't have the question mark
+  //& is the address of the error variable
   
-  //JSON file will be used to populate the tableview
-  
-  //define function
-  //make the tweet return ? optional
-  //make this a type method
-  class func tweetsFromJSONData(jsonData:NSData) -> [Tweet]? {
+  // serialize data to native object
+  // add in optional binding, learn when to use optional binding
+  // add in optional casting
+  // force downcast use ! force downcase ? is optional  if there is an error this will crash
+  // use optional binding when dealing with data
+  // tweets are returned as an array, and dictionary within an array
+  // cast this as [ [String : AnyObject ] ]
+  if let rootObject =  NSJSONSerialization.JSONObjectWithData(jsonData, options: nil, error: &error) as? [[String:AnyObject]]{
     
-    var error : NSError?  //see what error pops up when you don't have the question mark
-    //& is the address of the error variable
+    //inititize your tweet array to hold tweets
+    var tweets = [Tweet]()
     
-    // serialize data to native object
-    // add in optional binding, learn when to use optional binding
-    // add in optional casting
-    // force downcast use ! force downcase ? is optional  if there is an error this will crash
-    // use optional binding when dealing with data
-    // tweets are returned as an array, and dictionary within an array
-    // cast this as [ [String : AnyObject ] ]
-    if let rootObject =  NSJSONSerialization.JSONObjectWithData(jsonData, options: nil, error: &error) as? [[String:AnyObject]]{
+    //loop through the array of tweets, tweets started out as an array
+    // look at Brad's code on optional binding
+    // if any of the optional fail, everything fails, you need type and keys to be correct
+    // clean up your code
+    
+    for tweetObject in rootObject{
+      //use combo optional binding to set the your tweets
+      
+      //check the tweet["retweeted_status"] is present
+      //if let retweet_status = tweet["retweet_status"] as? [String: AnyObject]{
+      // if let text = retweet_status["text"] as? String,
+      //    let username = retweet_status["name"]{
+      //    let
+      //   }
+      //}
       
       
-      //inititize your tweet array to hold tweets
-      var tweets = [Tweet]()
       
-      //loop through the array of tweets, tweets started out as an array
-      for tweet in rootObject{
-        //use combo optional binding to set the your tweets
-        if let text = tweet["text"] as? String,
-          authorDictionary = tweet["user"] as? [String : AnyObject]{
+      if let text = tweetObject["text"] as? String,authorDictionary = tweetObject["user"] as? [String:AnyObject]{
+          if let username = authorDictionary["name"] as? String,
+            id = authorDictionary["id_str"] as? String,
+            profileImageURL = authorDictionary["profile_image_url"] as? String
+          {
+
+            var tweet = Tweet(text: text, username: username, id: id, profileImageURL: profileImageURL, profileImage: nil, originalAuthor: nil, originalTweet: nil, originalProfileImageURL: nil, quotedAuthor: nil, quotedText: nil, quotedAuthorImageURL: nil)
+
             
-            if let username = authorDictionary["name"] as? String,
-              id = authorDictionary["id_str"] as? String,
-              profileImageURL = authorDictionary["profile_image_url"] as? String{
-                println(username)
-                // create your tweets here here
-                let post = Tweet(text:text, username:username, id: id, profileImageURL:profileImageURL)
-                tweets.append(post)
+            if let retweet_status = tweetObject["retweet_status"] as? [String:AnyObject],
+               let originalTweet = retweet_status["text"] as? String{
+              if let user = retweet_status["user"] as? [String:AnyObject]{
+                if let originalName = user["name"] as? String,
+                   let originalProfileImageURL = user["profile_image_url"] as? String{
+                  tweet.originalAuthor = originalName
+                  tweet.originalTweet = originalTweet
+                  tweet.originalProfileImageURL = originalProfileImageURL
+                }
+              }
+              
             }
-        }
-        else{
-          
-        }
+            if let quoted_status = tweetObject["quoted_status"] as? [String:AnyObject],
+              let quotedText = quoted_status["text"] as? String{
+                if let user = quoted_status["user"] as? [String:AnyObject]{
+                  if let quotedName = user["name"] as? String,
+                      let quotedAuthorImageURL = user["profile_image_url"] as? String{
+                    tweet.quotedAuthor = quotedName
+                    tweet.quotedText = quotedText
+                    tweet.quotedAuthorImageURL = quotedAuthorImageURL
+                  }
+                }
+            }
+            
+            //move append here because the tweet Struct of copied and not by reference
+            tweets.append(tweet)
+          }
       }
-      return tweets
+      else{
+        
+      }
     }
-    
-    return nil // since our class is returning [Tweets] object as optional we can catch this with nil
-    
+    return tweets
   }
+  
+  return nil // since our class is returning [Tweets] object as optional we can catch this with nil
+  
+}
 }
 
 
