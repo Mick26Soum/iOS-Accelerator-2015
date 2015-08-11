@@ -52,6 +52,7 @@
 		008B2D421B6FE0DC00831364 /* TweetJSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetJSONParser.swift; sourceTree = "<group>"; };
 		0099E6041B72708A00EE52DA /* LoginService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
 		0099E6061B7278D900EE52DA /* TwitterService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterService.swift; sourceTree = "<group>"; };
+		00A5A8341B79DA61002C21A3 /* iOS_Playground_Dev_Accelerator.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = iOS_Playground_Dev_Accelerator.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +94,7 @@
 		008B2D191B6FD92000831364 /* Twitter Clone */ = {
 			isa = PBXGroup;
 			children = (
+				00A5A8341B79DA61002C21A3 /* iOS_Playground_Dev_Accelerator.playground */,
 				008B2D1C1B6FD92000831364 /* AppDelegate.swift */,
 				008B2D3C1B6FD9C400831364 /* Model */,
 				008B2D3E1B6FD9E000831364 /* View */,
