@@ -40,6 +40,32 @@ class TwitterService {
   }
   
   //class func userTweetsTimeline pass in the userName or id
+  
+  class func userTweetsTimeline(account:ACAccount,screen_name:String, completionHandler : (String?, [Tweet]?) -> (Void)){
+    let request = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod:SLRequestMethod.GET, URL: NSURL(string: "https://api.twitter.com/1.1/statuses/home_timeline.json?\(screen_name)")!, parameters: nil)
+    request.account = account
+    
+    request.performRequestWithHandler { (data, response, error) -> Void in
+      if let error = error{
+        completionHandler("Could not connect to server", nil)
+      }
+      else{
+        switch  response.statusCode{
+        case 200...299:
+          let tweets = TweetJSONParser.tweetsFromJSONData(data)
+          completionHandler(nil,tweets)
+        case 400...499:
+          completionHandler("our app failed", nil)
+        case 500...599:
+          completionHandler("server error", nil)
+        default:
+          completionHandler("Error Occurred", nil)
+        }
+      }
+    }
+  }
+
+
 }
 
 

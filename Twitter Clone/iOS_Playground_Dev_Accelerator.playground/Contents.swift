@@ -1,9 +1,6 @@
 //: Playground - noun: a place where people can play
 
 import UIKit
-//
-
-
 
 
 
@@ -13,29 +10,34 @@ import UIKit
 //Day 1 ::::::::::::::::::::::::: Write a function that reverses and array  :::::::::::::::::::::::::::::://
 //source tutorial geeksforgeeks.org & weheartswift.com
 
-func reverseArray(var array:[Int], var start:Int, var end:Int) {
+func reverseArray(var array:[Int]) ->[Int] {
   
-  var tempValu:Int = 0
+  
+  var start = 0
+  var end = array.count-1
   
   while start < end{
     
-    tempValu = array[start]
+    var tempValu = array[start]
     array[start] = array[end]
     array[end] = tempValu
     
-    start++
-    end--
+    ++start
+    --end
   }
+  return array
   
 }
 
 
+let strArray = [1,2,3,4]
+println(reverseArray(strArray))
 
 
-//Day 2  :::::::::::::::::::: Print the numbers 1..100:::::::::::::::::::::::::
-//                      for multiples of 3, print "Fizz"
-//                      for multiples of 5 print "Buzz"
-//                      for mutliples of 3 & 5 print "FizzBuzz"
+/*Day 2  :::::::::::::::::::: Print the numbers 1..100:::::::::::::::::::::::::
+for multiples of 3, print "Fizz"
+for multiples of 5 print "Buzz"
+for mutliples of 3 & 5 print "FizzBuzz" */
 
 for number in 1...100 {
   
@@ -54,8 +56,8 @@ for number in 1...100 {
 }
 
 
-//Day 3:::::::::::Return the number of times that a string "hi" appears in a given string :::::::::
-//Source Tutorial https://github.com/ozelentok/CodingBat-Soultions/blob/master/Java/String-2.java
+/*Day 3:::::::::::Return the number of times that a string "hi" appears in a given string :::::::::
+Source Tutorial https://github.com/ozelentok/CodingBat-Soultions/blob/master/Java/String-2.java */
 
 var paramString:String = "hellohiarehidoinghi"
 
@@ -74,25 +76,23 @@ for var i = 0; i < charactersArray.count; ++i{
 
 
 
-//Day 4. Given a string, return a version where all the "x" have been removed. Except an "x" at the very start or end should not be removed
+/*Day 4. Given a string, return a version where all the "x" have been removed. Except an "x" at the very start or end should not be removed*/
 
 var xString:String = "xsnedchedcxoshsnehsxox"
 var xStringCharacter = Array(xString)
 let firstChar = xStringCharacter.first
 let lastChar = xStringCharacter.last
 
+
 for var i = 0; i < xStringCharacter.count; ++i{
   
-  if xStringCharacter[i] == "x" && xStringCharacter[i] != firstChar && xStringCharacter[i] != lastChar {
+  if (xStringCharacter[i] == "x" && xStringCharacter[i] != firstChar && xStringCharacter[i] != lastChar) {
     xStringCharacter.removeAtIndex(i)
   }
 }
 
-
-
-
-//Day Data Structure, implement a queue FIFO
-//Tutorial Source: Beginning Swift Programming by Wei-Meng Lee
+/*Day Data Structure, implement a queue FIFO
+Tutorial Source: Beginning Swift Programming by Wei-Meng Lee*/
 
 class MyQueue{
   var elements = [Int]()
@@ -118,20 +118,102 @@ newQueue.pop()
 
 
 
-  
-
-
-
-
-
 //::::::::::::::::::::::::::::::::::::::Week 2 Code Challenge :::::::::::::::::::::::::::::::::::::::::::::://
 
-//Code Challenge: Write a function that determines how many words there are in a sentence
+/*Day 1********Code Challenge: Write a function that determines how many words there are in a sentence
+geeksforgeeks.org*/
+
+let strOfWords = "How many words are in this string? \t"
+let blank = " "
+
+//let whiteSpaceNewLine = NSCharacterSet.whitespaceAndNewlineCharacterSet()
+//
+//let wordArray = strOfWords.componentsSeparatedByString(" ")
+//wordArray.count
 
 
-//Code Challenge: Write a function that returns all the odd elements of an array
+func strCounter(str:String) -> Int{
 
-//Code Challenge: Write a function that computes the list of the first 100 Fibonacci numbers.
+  var state = false
+  var wordcounter = 0
+  
+  for character in str{
+    if character == " " || character == "\n" || character == "\t"{
+      state = false
+    }
+    else if state == false{
+      state = true
+      ++wordcounter
+    }
+  }
+  
+  return wordcounter
+  
+}
+
+strCounter(strOfWords)
+strCounter(blank)
+
+
+
+/*Day 2 ******Code Challenge: Write a function that returns all the odd elements of an array************/
+let array = [1,3,5,6,8,10,12]
+
+func oddElements(array:[Int]) -> [Int]{
+  var oddArray = [Int]()
+  
+  for var i = 0; i < array.count; ++i{
+    if array[i]%2 == 1{
+      oddArray.append(array[i])
+    }
+    
+  }
+  return oddArray
+}
+
+oddElements(array)
+
+
+
+//Day 3 Code Challenge: Write a function that computes the list of the first 100 Fibonacci numbers.
+
+func fibonacci1(n: Int) -> Int {
+  if n < 2 {
+    return n
+  }
+  var fibPrev = 1
+  var fib = 1
+  for num in 2...n {
+    (fibPrev, fib) = (fib, fib + fibPrev)
+  }
+  return fib
+}
+
+fibonacci1(100)
+
+
+func fibonacci(n: Int) -> Int {
+  if n < 2 {
+    return n
+  } else {
+    return fibonacci(n-1) + fibonacci(n-2)
+  }
+}
+
+println(fibonacci(30))
+
+
+
+//int n, a = 0, b = 0, c = 1;
+//System.out.print("Fibonacci Series:");
+//for(int i = 1; i <= 100; i++)
+//{
+//  a = b;
+//  b = c;
+//  c = a + b;
+//  System.out.print(a+" ");
+//}
+
 
 //Code Challenge: Write a function that tests whether a string is a palindrome
 
@@ -236,4 +318,47 @@ newQueue.pop()
 //  return changer(x)
 //
 //}
+
+//http://www.geeksforgeeks.org/count-words-in-a-given-string/
+
+//Given a string, count number of words in it. The words are separated by following characters: space (‘ ‘) or new line (‘\n’) or tab (‘\t’) or a combination of these.
+//
+//There can be many solutions to this problem. Following is a simple and interesting solution.
+//The idea is to maintain two states: IN and OUT. The state OUT indicates that a separator is seen. State IN indicates that a word character is seen. We increment word count when previous state is OUT and next character is a word character.
+//
+
+///* Program to count no of words from given input string. */
+//#include <stdio.h>
+//
+//#define OUT 0
+//#define IN  1
+//
+//// returns number of words in str
+//unsigned countWords(char *str)
+//{
+//  int state = OUT;
+//  unsigned wc = 0;  // word count
+//  
+//  // Scan all characters one by one
+//  while (*str)
+//  {
+//    // If next character is a separator, set the state as OUT
+//    if (*str == ' ' || *str == '\n' || *str == '\t')
+//    state = OUT;
+//    
+//    // If next character is not a word separator and state is OUT,
+//    // then set the state as IN and increment word count
+//    else if (state == OUT)
+//    {
+//      state = IN;
+//      ++wc;
+//    }
+//    
+//    // Move to next character
+//    ++str;
+//  }
+//  
+//  return wc;
+//}
+
 

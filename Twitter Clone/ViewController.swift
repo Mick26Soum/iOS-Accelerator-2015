@@ -28,6 +28,8 @@ class ViewController: UIViewController {
     self.tableView.estimatedRowHeight = 60
     self.tableView.rowHeight = UITableViewAutomaticDimension
     
+    tableView.registerNib(UINib(nibName: "NibCellView", bundle: NSBundle.mainBundle()), forCellReuseIdentifier: "NibCellView")
+    
     // call the LoginService
     LoginService.loginForTwitter { (errorDescription, account) -> (Void) in
       if let error = errorDescription{
@@ -101,17 +103,17 @@ extension ViewController : UITableViewDataSource{
   }
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! TweetTableViewCell
+    let cell = tableView.dequeueReusableCellWithIdentifier("NibCellView", forIndexPath: indexPath) as! NibCellView
     cell.tag++
     let tag = cell.tag
 
     var tweet = self.tweets[indexPath.row]
     //cell.textLabel?.text = tweet.text
-    cell.userNameLabel.text = tweet.username
+    cell.nameLabel.text = tweet.username
     cell.tweetLabel.text = tweet.text
-    cell.userImage.image = nil
+    cell.imageButton = nil
     if let profileImage = tweet.profileImage{
-      cell.userImage.image = profileImage
+      cell.imageButton.setImage(profileImage, forState: UIControlState.Normal)
     }
     else{
   
@@ -135,7 +137,7 @@ extension ViewController : UITableViewDataSource{
                 tweet.profileImage = resizedImage
                 self.tweets[indexPath.row] = tweet
                 if cell.tag == tag{
-                  cell.userImage.image = resizedImage
+                  cell.imageButton.setImage(resizedImage, forState: UIControlState.Normal)
                 }
               })
               
@@ -144,11 +146,6 @@ extension ViewController : UITableViewDataSource{
         })
     
   }
-    
-  
-    
-   
-    
     return cell
     
   }

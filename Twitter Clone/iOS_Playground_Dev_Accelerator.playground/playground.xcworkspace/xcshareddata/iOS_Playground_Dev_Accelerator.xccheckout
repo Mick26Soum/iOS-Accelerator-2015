@@ -5,16 +5,16 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>BFA3E06B-8FD2-4A10-9DC9-18C8CE84B12C</string>
+	<string>58C57C02-C3DA-4363-ABA7-F2340B4B99D4</string>
 	<key>IDESourceControlProjectName</key>
-	<string>Twitter Clone</string>
+	<string>iOS_Playground_Dev_Accelerator</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>6AD0DBE21D2686D2A4D4675F8EC63A0E1DBF0D54</key>
 		<string>github.com:Mick26Soum/iOS-Accelerator-2015.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Twitter Clone.xcodeproj</string>
+	<string>Twitter Clone/iOS_Playground_Dev_Accelerator.playground</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>6AD0DBE21D2686D2A4D4675F8EC63A0E1DBF0D54</key>

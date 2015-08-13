@@ -21,8 +21,10 @@ struct Tweet {
   var quotedAuthor : String?
   var quotedText : String?
   var quotedAuthorImageURL : String?
-  
-  
+  var profileImageBackgroundURL : String?
+  var orginialImageBackgroundURL : String?
+  var quotedImageBackgroundURL : String?
+  var location : String?
 }
 
 
