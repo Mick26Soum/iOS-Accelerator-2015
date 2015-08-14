@@ -25,6 +25,9 @@ struct Tweet {
   var orginialImageBackgroundURL : String?
   var quotedImageBackgroundURL : String?
   var location : String?
+  var screenname : String?
+  var originalScreenname : String?
+  var quotedScreenname : String?
 }
 
 

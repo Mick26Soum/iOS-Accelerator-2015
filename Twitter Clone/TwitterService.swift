@@ -15,6 +15,8 @@ class TwitterService {
   //The completion handler function(argument) takes in a string and tweet struct as parameter, 
   //each parameter is assigned according to how the SLRequest reponse is sent back
   
+//  "https://api.twitter.com/1.1/statuses/home_timeline.json"
+  
   class func tweetsTimeline(account:ACAccount, completionHandler : (String?, [Tweet]?) -> (Void)){
     let request = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod:SLRequestMethod.GET, URL: NSURL(string: "https://api.twitter.com/1.1/statuses/home_timeline.json")!, parameters: nil)
     request.account = account
@@ -40,9 +42,10 @@ class TwitterService {
   }
   
   //class func userTweetsTimeline pass in the userName or id
+  //https://api.twitter.com/1.1/statuses/user_timeline.json?
   
-  class func userTweetsTimeline(account:ACAccount,screen_name:String, completionHandler : (String?, [Tweet]?) -> (Void)){
-    let request = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod:SLRequestMethod.GET, URL: NSURL(string: "https://api.twitter.com/1.1/statuses/home_timeline.json?\(screen_name)")!, parameters: nil)
+  class func userTweetsTimeline(account:ACAccount, screen_name:String, completionHandler : (String?, [Tweet]?) -> (Void)){
+    let request = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod:SLRequestMethod.GET, URL: NSURL(string: "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=\(screen_name)")!, parameters: nil)
     request.account = account
     
     request.performRequestWithHandler { (data, response, error) -> Void in

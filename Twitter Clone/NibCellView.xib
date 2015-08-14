@@ -13,9 +13,8 @@
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sKa-ax-Tdo" id="lzu-CW-9YU">
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bbK-Cg-7Bl">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bbK-Cg-7Bl">
                         <rect key="frame" x="8" y="18" width="60" height="60"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="hw4-jr-gf5"/>
                             <constraint firstAttribute="height" constant="60" id="mMQ-o6-CZ0"/>
@@ -24,18 +23,16 @@
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v7d-Qm-9oP">
-                        <rect key="frame" x="76" y="49" width="516" height="21"/>
-                        <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="748" text="Text" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v7d-Qm-9oP">
+                        <rect key="frame" x="76" y="49" width="516" height="125"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ofF-ru-tRZ">
                         <rect key="frame" x="76" y="18" width="46" height="21"/>
-                        <color key="backgroundColor" red="0.80000001190000003" green="0.40000000600000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="41F-85-m3v">
@@ -50,7 +47,7 @@
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Prp-Xg-zSh">
                         <rect key="frame" x="148" y="182" width="20" height="20"/>
-                        <state key="normal" backgroundImage="arrow">
+                        <state key="normal" backgroundImage="retweet">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
@@ -60,15 +57,22 @@
                             <constraint firstAttribute="width" constant="20" id="OUn-CX-kF8"/>
                             <constraint firstAttribute="height" constant="20" id="UAF-xP-eGq"/>
                         </constraints>
-                        <state key="normal" backgroundImage="arrow">
+                        <state key="normal" backgroundImage="star">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G51-W9-ktr">
+                        <rect key="frame" x="76" y="63" width="42" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="bbK-Cg-7Bl" firstAttribute="leading" secondItem="lzu-CW-9YU" secondAttribute="leadingMargin" id="Bdl-zb-hbG"/>
                     <constraint firstItem="Prp-Xg-zSh" firstAttribute="leading" secondItem="41F-85-m3v" secondAttribute="trailing" constant="52" id="Cau-Dn-FWk"/>
                     <constraint firstItem="v7d-Qm-9oP" firstAttribute="top" secondItem="ofF-ru-tRZ" secondAttribute="bottom" constant="10" id="IK6-qR-v33"/>
+                    <constraint firstItem="Zgc-Xn-X7d" firstAttribute="top" secondItem="v7d-Qm-9oP" secondAttribute="bottom" constant="8" id="K6W-Zr-kvX"/>
                     <constraint firstItem="Zgc-Xn-X7d" firstAttribute="top" secondItem="Prp-Xg-zSh" secondAttribute="top" id="MIX-2B-D6n"/>
                     <constraint firstAttribute="bottomMargin" secondItem="Prp-Xg-zSh" secondAttribute="bottom" constant="10" id="d33-tE-URX"/>
                     <constraint firstAttribute="bottomMargin" secondItem="41F-85-m3v" secondAttribute="bottom" constant="10" id="dN4-3e-5gJ"/>
@@ -85,6 +89,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="imageButton" destination="bbK-Cg-7Bl" id="CTc-RI-hlX"/>
+                <outlet property="locationLabel" destination="G51-W9-ktr" id="Qoz-o5-Txc"/>
                 <outlet property="nameLabel" destination="ofF-ru-tRZ" id="DeQ-QM-HP1"/>
                 <outlet property="tweetLabel" destination="v7d-Qm-9oP" id="GOZ-nl-p2E"/>
             </connections>
@@ -93,5 +98,7 @@
     </objects>
     <resources>
         <image name="arrow" width="20" height="20"/>
+        <image name="retweet" width="20" height="20"/>
+        <image name="star" width="20" height="20"/>
     </resources>
 </document>

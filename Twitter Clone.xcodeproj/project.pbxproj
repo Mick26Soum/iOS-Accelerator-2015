@@ -10,6 +10,8 @@
 		005334F31B73C2270017C90F /* TweetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005334F21B73C2270017C90F /* TweetTableViewCell.swift */; };
 		005334F51B73D8590017C90F /* TweetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005334F41B73D8590017C90F /* TweetDetailViewController.swift */; };
 		006168D41B79059D00B322B5 /* ImageResizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006168D31B79059D00B322B5 /* ImageResizer.swift */; };
+		0063C4D71B7D0C32009711B1 /* UserTimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0063C4D61B7D0C32009711B1 /* UserTimelineViewController.swift */; };
+		0070CA421B7DB91300E8B75F /* userTweetTimeLine.json in Resources */ = {isa = PBXBuildFile; fileRef = 0070CA411B7DB91300E8B75F /* userTweetTimeLine.json */; };
 		00761A5A1B711E6800A683EF /* tweet.json in Resources */ = {isa = PBXBuildFile; fileRef = 00761A591B711E6800A683EF /* tweet.json */; };
 		008B2D1D1B6FD92000831364 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008B2D1C1B6FD92000831364 /* AppDelegate.swift */; };
 		008B2D1F1B6FD92000831364 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008B2D1E1B6FD92000831364 /* ViewController.swift */; };
@@ -39,6 +41,8 @@
 		005334F21B73C2270017C90F /* TweetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
 		005334F41B73D8590017C90F /* TweetDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetDetailViewController.swift; sourceTree = "<group>"; };
 		006168D31B79059D00B322B5 /* ImageResizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageResizer.swift; sourceTree = "<group>"; };
+		0063C4D61B7D0C32009711B1 /* UserTimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTimelineViewController.swift; sourceTree = "<group>"; };
+		0070CA411B7DB91300E8B75F /* userTweetTimeLine.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = userTweetTimeLine.json; sourceTree = "<group>"; };
 		00761A591B711E6800A683EF /* tweet.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = tweet.json; path = "../Twitter Clone/tweet.json"; sourceTree = "<group>"; };
 		008B2D171B6FD92000831364 /* Twitter Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Twitter Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		008B2D1B1B6FD92000831364 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -131,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				00761A591B711E6800A683EF /* tweet.json */,
+				0070CA411B7DB91300E8B75F /* userTweetTimeLine.json */,
 				008B2D311B6FD92000831364 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -159,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				008B2D1E1B6FD92000831364 /* ViewController.swift */,
+				0063C4D61B7D0C32009711B1 /* UserTimelineViewController.swift */,
 				005334F21B73C2270017C90F /* TweetTableViewCell.swift */,
 				005334F41B73D8590017C90F /* TweetDetailViewController.swift */,
 				006168D31B79059D00B322B5 /* ImageResizer.swift */,
@@ -260,6 +266,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0070CA421B7DB91300E8B75F /* userTweetTimeLine.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +285,7 @@
 				008B2D1D1B6FD92000831364 /* AppDelegate.swift in Sources */,
 				005334F51B73D8590017C90F /* TweetDetailViewController.swift in Sources */,
 				0099E6071B7278D900EE52DA /* TwitterService.swift in Sources */,
+				0063C4D71B7D0C32009711B1 /* UserTimelineViewController.swift in Sources */,
 				006168D41B79059D00B322B5 /* ImageResizer.swift in Sources */,
 				005334F31B73C2270017C90F /* TweetTableViewCell.swift in Sources */,
 			);

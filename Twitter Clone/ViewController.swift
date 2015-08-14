@@ -22,7 +22,9 @@ class ViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     tableView.dataSource = self
+    tableView.delegate  = self
     self.tableView.reloadData()
+    
     
     // 2 The line items below is required for the tableViewCell to adjust automatically
     self.tableView.estimatedRowHeight = 60
@@ -74,27 +76,33 @@ class ViewController: UIViewController {
       // Dispose of any resources that can be recreated.
     }
   
-  override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-      println()
+  //need a delegat method for the tableview
+  //tableview did select row
+  // call performsegue
+  // will automatically call prepare for 
+
+  
+override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    println()
+    
+    if segue.identifier == "tweetDetail"{
       
-      if segue.identifier == "tweetDetail"{
-        
-        let textDetailViewController = segue.destinationViewController as! TweetDetailViewController
-        
-        if let indexPath = self.tableView.indexPathForSelectedRow(){
-          let tweet = self.tweets[indexPath.row]
-          textDetailViewController.selectedTweet = tweet
-        }
-        
+      let textDetailViewController = segue.destinationViewController as! TweetDetailViewController
+      
+      if let indexPath = self.tableView.indexPathForSelectedRow(){
+        let tweet = self.tweets[indexPath.row]
+        textDetailViewController.selectedTweet = tweet
       }
       
     }
+    
+  }
 }
 
 
 //MARK: UITableViewDatasource
 
-extension ViewController : UITableViewDataSource{
+extension ViewController : UITableViewDataSource, UITableViewDelegate {
   // required methods numberOfRowsInSection
   // Cell for Row at Index
   
@@ -108,12 +116,13 @@ extension ViewController : UITableViewDataSource{
     let tag = cell.tag
 
     var tweet = self.tweets[indexPath.row]
-    //cell.textLabel?.text = tweet.text
+    
     cell.nameLabel.text = tweet.username
     cell.tweetLabel.text = tweet.text
-    cell.imageButton = nil
+    cell.locationLabel.text = tweet.location
+    cell.imageButton.setImage(nil, forState: .Normal)
     if let profileImage = tweet.profileImage{
-      cell.imageButton.setImage(profileImage, forState: UIControlState.Normal)
+      cell.imageButton.setImage(profileImage, forState: .Normal)
     }
     else{
   
@@ -149,6 +158,12 @@ extension ViewController : UITableViewDataSource{
     return cell
     
   }
+  
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    performSegueWithIdentifier("tweetDetail", sender: self)
+  }
+  
+  
   
 }
 

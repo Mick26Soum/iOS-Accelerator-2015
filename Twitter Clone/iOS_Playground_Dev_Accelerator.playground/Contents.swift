@@ -2,6 +2,12 @@
 
 import UIKit
 
+var strName = "Test"
+println("Hi \(strName)")
+
+var screenname = "hey"
+
+println("https://api.twitter.com/1.1/statuses/user_timeline.json?\(screenname)")
 
 
 
@@ -201,6 +207,9 @@ func fibonacci(n: Int) -> Int {
 }
 
 println(fibonacci(30))
+
+
+
 
 
 

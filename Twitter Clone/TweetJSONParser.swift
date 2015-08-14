@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 
 class TweetJSONParser {
-
+  
   class func tweetsFromJSONData(jsonData:NSData) -> [Tweet]? {
     
     var error : NSError?
@@ -25,23 +25,45 @@ class TweetJSONParser {
       for tweetObject in rootObject{
         //use combo optional binding to set the your tweets
         if let text = tweetObject["text"] as? String,
+          
           authorDictionary = tweetObject["user"] as? [String:AnyObject]{
             if let username = authorDictionary["name"] as? String,
-              id = authorDictionary["id_str"] as? String,
-              profileImageURL = authorDictionary["profile_image_url"] as? String
+                   id = authorDictionary["id_str"] as? String,
+                   profileImageURL = authorDictionary["profile_image_url"] as? String,
+                   screenname = authorDictionary["screen_name"] as? String,
+                   location = authorDictionary["location"] as? String,
+                   profileImageBackgroundURL = authorDictionary["profile_background_image_url"] as? String
+            
             {
               
-              var tweet = Tweet(text: text, username: username, id: id, profileImageURL: profileImageURL, profileImage: nil, originalAuthor: nil, originalTweet: nil, originalProfileImageURL: nil, quotedAuthor: nil, quotedText: nil, quotedAuthorImageURL: nil,
-                profileImageBackgroundURL:nil,orginialImageBackgroundURL:nil, quotedImageBackgroundURL:nil, location : nil)
-            
+              var tweet = Tweet(text: text,
+                      username: username,
+                      id: id, profileImageURL: profileImageURL,
+                      profileImage: nil,
+                      originalAuthor: nil,
+                      originalTweet: nil,
+                      originalProfileImageURL: nil,
+                      quotedAuthor: nil,
+                      quotedText: nil,
+                      quotedAuthorImageURL: nil,
+                      profileImageBackgroundURL:nil,
+                      orginialImageBackgroundURL:nil,
+                      quotedImageBackgroundURL:nil,
+                      location : location,
+                      screenname : screenname,
+                      originalScreenname : nil,
+                      quotedScreenname : nil)
+              
               if let retweet_status = tweetObject["retweet_status"] as? [String:AnyObject],
                 let originalTweet = retweet_status["text"] as? String{
                   if let user = retweet_status["user"] as? [String:AnyObject]{
                     if let originalName = user["name"] as? String,
-                      let originalProfileImageURL = user["profile_image_url"] as? String{
+                      let originalProfileImageURL = user["profile_image_url"] as? String,
+                      let originalScreenname = user["screen_name"] as? String{
                         tweet.originalAuthor = originalName
                         tweet.originalTweet = originalTweet
                         tweet.originalProfileImageURL = originalProfileImageURL
+                        tweet.originalScreenname = originalScreenname
                     }
                   }
               }
@@ -49,10 +71,12 @@ class TweetJSONParser {
                 let quotedText = quoted_status["text"] as? String{
                   if let user = quoted_status["user"] as? [String:AnyObject]{
                     if let quotedName = user["name"] as? String,
-                      let quotedAuthorImageURL = user["profile_image_url"] as? String{
+                      let quotedAuthorImageURL = user["profile_image_url"] as? String,
+                      let quotedScreenname = user["screen_name"] as? String{
                         tweet.quotedAuthor = quotedName
                         tweet.quotedText = quotedText
                         tweet.quotedAuthorImageURL = quotedAuthorImageURL
+                        tweet.quotedScreenname = quotedScreenname
                     }
                   }
               }
