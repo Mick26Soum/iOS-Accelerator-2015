@@ -13,16 +13,30 @@ class UserTimelineViewController: UIViewController {
   
   @IBOutlet weak var tableView: UITableView!
   @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-  
-  
+	@IBOutlet weak var headName: UILabel!
+	@IBOutlet weak var headBackgroundImage: UIImageView!
+	@IBOutlet weak var userImageHeader: UIImageView!
+	
+	var screenname : String?
+	var headBackgroundURL : String?
   var tweets = [Tweet]()
-  var screenname : String!
   lazy var imageQueue = NSOperationQueue()
   
-  override func viewDidLoad() {
+	
+	override func viewDidLoad() {
         super.viewDidLoad()
-    
-    
+		
+		if let screenname = screenname as String?{
+			headName.text = screenname
+		}
+		
+		let backgroundURL = NSURL(string: headBackgroundURL!)
+		let imageData = NSData(contentsOfURL: backgroundURL!)
+		let image = UIImage(data: imageData!)
+		var size : CGSize = CGSize(width: 600, height: 80)
+		let resizedImage = ImageResizer.resizeImage(image!, size: size)
+		headBackgroundImage.image	= resizedImage
+		
     tableView.dataSource = self
     tableView.delegate = self
     tableView.reloadData()
@@ -38,7 +52,7 @@ class UserTimelineViewController: UIViewController {
         //view UIAlertView?
       }
       if let account = account{
-        TwitterService.userTweetsTimeline(account, screen_name:self.screenname, completionHandler: { (error, tweets) -> (Void) in
+        TwitterService.userTweetsTimeline(account, screen_name:self.screenname!, completionHandler: { (error, tweets) -> (Void) in
           //start animating the activity indicator before tweets are retrieved
           //remember to put it on the main queue as it's an interface object
           NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
@@ -57,16 +71,8 @@ class UserTimelineViewController: UIViewController {
         })
       }
     }
-   
-
-    
-    }//end of viewDidLoad
+}//end of viewDidLoad
   
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 }
 
 
@@ -89,7 +95,7 @@ extension UserTimelineViewController : UITableViewDataSource, UITableViewDelegat
     
     cell.nameLabel.text = tweet.username
     cell.tweetLabel.text = tweet.text
-    cell.locationLabel.text = tweet.text
+    cell.locationLabel.text = tweet.location
     if let profileImage = tweet.profileImage{
       cell.imageButton.setImage(profileImage, forState: .Normal)
     }else{
@@ -107,7 +113,9 @@ extension UserTimelineViewController : UITableViewDataSource, UITableViewDelegat
             size = CGSize(width: 60, height: 60)
           }
         let resizedImage = ImageResizer.resizeImage(image, size: size)
-        
+				
+				self.userImageHeader.image = resizedImage
+					
         NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
           tweet.profileImage  = resizedImage
           self.tweets[indexPath.row] = tweet

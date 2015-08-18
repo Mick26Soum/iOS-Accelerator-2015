@@ -165,8 +165,8 @@
 			children = (
 				008B2D1E1B6FD92000831364 /* ViewController.swift */,
 				0063C4D61B7D0C32009711B1 /* UserTimelineViewController.swift */,
-				005334F21B73C2270017C90F /* TweetTableViewCell.swift */,
 				005334F41B73D8590017C90F /* TweetDetailViewController.swift */,
+				005334F21B73C2270017C90F /* TweetTableViewCell.swift */,
 				006168D31B79059D00B322B5 /* ImageResizer.swift */,
 				009B21091B7C6DF900E4F9A0 /* NibCellView.swift */,
 				009B21051B7C6B8A00E4F9A0 /* NibCellView.xib */,

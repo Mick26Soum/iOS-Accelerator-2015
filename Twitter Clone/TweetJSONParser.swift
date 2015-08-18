@@ -16,10 +16,7 @@ class TweetJSONParser {
     var error : NSError?
     
     if let rootObject =  NSJSONSerialization.JSONObjectWithData(jsonData, options: nil, error: &error) as? [[String:AnyObject]]{
-      //always evaluate the root object type in a JSON data, this will determine how you cast you data as either
-      //an array of dicitonary [[String:AnyObject]] or just and array [String:AnyObject]
-      
-      //inititize your tweet array to hold tweets
+
       var tweets = [Tweet]()
       
       for tweetObject in rootObject{
@@ -46,8 +43,8 @@ class TweetJSONParser {
                       quotedAuthor: nil,
                       quotedText: nil,
                       quotedAuthorImageURL: nil,
-                      profileImageBackgroundURL:nil,
-                      orginialImageBackgroundURL:nil,
+                      profileImageBackgroundURL:profileImageBackgroundURL,
+                      originalImageBackgroundURL:nil,
                       quotedImageBackgroundURL:nil,
                       location : location,
                       screenname : screenname,
@@ -59,11 +56,13 @@ class TweetJSONParser {
                   if let user = retweet_status["user"] as? [String:AnyObject]{
                     if let originalName = user["name"] as? String,
                       let originalProfileImageURL = user["profile_image_url"] as? String,
-                      let originalScreenname = user["screen_name"] as? String{
+                      let originalScreenname = user["screen_name"] as? String,
+											let originalImageBackground = user["originalImageBackgroundURL"] as? String{
                         tweet.originalAuthor = originalName
                         tweet.originalTweet = originalTweet
                         tweet.originalProfileImageURL = originalProfileImageURL
                         tweet.originalScreenname = originalScreenname
+												tweet.originalImageBackgroundURL = originalImageBackground
                     }
                   }
               }
@@ -72,11 +71,13 @@ class TweetJSONParser {
                   if let user = quoted_status["user"] as? [String:AnyObject]{
                     if let quotedName = user["name"] as? String,
                       let quotedAuthorImageURL = user["profile_image_url"] as? String,
-                      let quotedScreenname = user["screen_name"] as? String{
+                      let quotedScreenname = user["screen_name"] as? String,
+											let quotedBackgroundImage = user["quotedImageBackgroundURL"] as? String{
                         tweet.quotedAuthor = quotedName
                         tweet.quotedText = quotedText
                         tweet.quotedAuthorImageURL = quotedAuthorImageURL
                         tweet.quotedScreenname = quotedScreenname
+												tweet.quotedImageBackgroundURL = quotedBackgroundImage
                     }
                   }
               }

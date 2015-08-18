@@ -12,7 +12,7 @@ class TweetDetailViewController: UIViewController {
   
   var selectedTweet : Tweet!
   var screenname : String?
-  
+	var backgroundImageURL : String?
 
   @IBOutlet weak var userName: UILabel!
   @IBOutlet weak var tweet: UILabel!
@@ -29,27 +29,34 @@ class TweetDetailViewController: UIViewController {
       if let originalAuth = selectedTweet.originalAuthor,
         let originalTweet = selectedTweet.originalTweet,
         let originalImageURL = selectedTweet.originalProfileImageURL,
-        let originalscreenname = selectedTweet.screenname{
-        self.userName.text = originalAuth
-        self.tweet.text = originalTweet
-        self.imageURL = originalImageURL
-        self.screenname = originalscreenname
+        let originalScreenname = selectedTweet.screenname,
+				let originalBackgroundURL = selectedTweet.originalProfileImageURL{
+         self.userName.text = originalAuth
+         self.tweet.text = originalTweet
+         self.imageURL = originalImageURL
+         self.screenname = originalScreenname
+				 self.backgroundImageURL = originalBackgroundURL
+				 
       } 
       if let quoteAuth = selectedTweet.quotedAuthor,
          let quotedText = selectedTweet.quotedText,
          let quotedAuthorImageURL = selectedTweet.quotedAuthorImageURL,
-         let quotedscreenname = selectedTweet.screenname{
+         let quotedscreenname = selectedTweet.screenname,
+				 let quotedBackgroundURL = selectedTweet.quotedImageBackgroundURL{
           self.userName.text = quoteAuth
           self.tweet.text = quotedText
           self.imageURL = quotedAuthorImageURL
           self.screenname = quotedscreenname
+					self.backgroundImageURL	= quotedBackgroundURL
       }
       else{
         self.userName.text = selectedTweet.username
         self.tweet.text = selectedTweet.text
         self.imageURL = selectedTweet.profileImageURL
         self.screenname = selectedTweet.screenname
+				self.backgroundImageURL	= selectedTweet.profileImageBackgroundURL
       }
+			
       
      
       
@@ -82,8 +89,8 @@ class TweetDetailViewController: UIViewController {
     if segue.identifier == "userTimeLine"{
       let TimelineViewController = segue.destinationViewController as! UserTimelineViewController
       TimelineViewController.screenname = screenname
-      
-      
+			TimelineViewController.headBackgroundURL = backgroundImageURL
+			
     }
   }
   

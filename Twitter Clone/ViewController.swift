@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Mick Soum. All rights reserved.
 
 
-import UIKit //imports Foundation...always use UIKit
+import UIKit
 import Accounts
 
 
@@ -35,13 +35,9 @@ class ViewController: UIViewController {
     // call the LoginService
     LoginService.loginForTwitter { (errorDescription, account) -> (Void) in
       if let error = errorDescription{
-        //how to do we go about warning the user in the line?
-        //view UIAlertView?
       }
       if let account = account{
         TwitterService.tweetsTimeline(account, completionHandler: { (error, tweets) -> (Void) in
-          //start animating the activity indicator before tweets are retrieved
-          //remember to put it on the main queue as it's an interface object
           NSOperationQueue.mainQueue().addOperationWithBlock({ () -> Void in
             self.activityIndicator.startAnimating()
           })
@@ -58,30 +54,9 @@ class ViewController: UIViewController {
         })
       }
     }
-    
-    
-    //    if let filepath = NSBundle.mainBundle().pathForResource("tweet", ofType: "json"){
-    //      if let data = NSData(contentsOfFile: filepath){
-    //        if let tweets = TweetJSONParser.tweetsFromJSONData(data){
-    //
-    //          self.tweets = tweets
-    //        }
-    //      }
-    //    }
-    
+ 
   }
-  
-    override func didReceiveMemoryWarning() {
-      super.didReceiveMemoryWarning()
-      // Dispose of any resources that can be recreated.
-    }
-  
-  //need a delegat method for the tableview
-  //tableview did select row
-  // call performsegue
-  // will automatically call prepare for 
-
-  
+	
 override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     println()
     
@@ -103,8 +78,6 @@ override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 //MARK: UITableViewDatasource
 
 extension ViewController : UITableViewDataSource, UITableViewDelegate {
-  // required methods numberOfRowsInSection
-  // Cell for Row at Index
   
   func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return tweets.count

@@ -22,7 +22,7 @@ struct Tweet {
   var quotedText : String?
   var quotedAuthorImageURL : String?
   var profileImageBackgroundURL : String?
-  var orginialImageBackgroundURL : String?
+  var originalImageBackgroundURL : String?
   var quotedImageBackgroundURL : String?
   var location : String?
   var screenname : String?
